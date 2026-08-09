@@ -1,0 +1,110 @@
+# Starting point for a benchmark over your own set of Wikipedia articles.
+#
+# Copy this file, point `corpus` at your article list, and run:
+#
+#     musart --config my.yaml collect
+#     musart --config my.yaml run
+#
+# Every value below is the default; delete anything you do not want to change.
+
+# --- input ----------------------------------------------------------------
+
+# Either a nested JSON of {heading: {domain: [article titles]}} -- the shape
+# ../assets/good_articles.json has -- or a CSV with title,category columns.
+# For nested JSON the *second* level is the domain the benchmark groups by.
+corpus: my_corpus.json
+
+# Everything the pipeline reads and writes.
+work_dir: output
+
+# Sent in the User-Agent on Wikimedia API calls, as their etiquette policy asks.
+# Put a real contact address here before running a large corpus.
+contact: your-name <you@example.org>
+
+# Seconds between Wikimedia API calls. Raise it if stage 0 hits HTTP 429.
+api_delay: 0.5
+
+# If you already have Wikidata extracted some other way (from the dumps, say),
+# point these at your files and skip `musart collect` entirely.
+# triples: triples.csv        # TSV: subject, relation, object, subject_label, object_label
+# title2qid: qid_title.csv    # CSV with qid,title columns
+# aliases: aliases.jsonl      # JSONL with qid,alias columns
+# pid2label: pid2label.json   # JSON: property id -> English label
+
+# --- stage 1: which relations are salient in which domain -----------------
+
+saliency:
+  # A domain needs this many items before PageRank can say anything useful.
+  min_category_items: 100
+  # And a relation this many. Lower both for a small corpus -- the defaults are
+  # tuned for ~25,000 articles and will empty a corpus of a few hundred.
+  min_relation_items: 50
+
+  # Wikimedia housekeeping properties, taxonomy links and demographics, excluded
+  # before the graph is built. Edit the file to suit your domain.
+  generic_relations: ../assets/generic_relations.txt
+
+  top_k: 30
+  n_iter: 50
+  damping_factor: 0.999
+
+  # 'piteration' is what MUSART used. Prefer 'lanczos' for a new corpus: at
+  # damping 0.999 fifty power iterations are far from converged, so piteration
+  # scores depend on the library version, while lanczos solves it exactly.
+  solver: piteration
+
+  # A relation is salient for a domain when the domain scores above this in the
+  # relation's personalized PageRank. This is the single knob that decides how
+  # selective the benchmark is. Run stage 1, read cat2relations.jsonl, and
+  # adjust before going further -- it is cheap to re-run.
+  threshold: 0.1
+
+# --- stage 2: which items make it into the benchmark ----------------------
+
+select:
+  # null keeps every domain that survives the filters. Set a list to hand-pick.
+  # Entries that match no data are reported with a spelling suggestion; do not
+  # ignore that warning, it is how MUSART lost a domain.
+  categories: null
+
+  # A relation needs this many items to be worth a domain-level question.
+  min_relation_items_post: 105
+
+  # A relation is kept when it is either always single-valued, or has at least
+  # this many genuinely multi-valued items. Anything in between is ambiguous to
+  # grade -- a model cannot tell how many answers are wanted -- and is dropped.
+  min_multi_valued: 100
+
+  # (domain, relation) pairs to drop. Read output/cat_relation_range.csv after a
+  # first run: a pair with only a handful of distinct objects is a guessing game,
+  # not a knowledge probe.
+  exclude_pairs: []
+  # - [Television, color]
+
+# --- stage 3: questions, gold answers, exemplars --------------------------
+
+build:
+  # relation -> question template, using [S] for the subject. Ships with 121
+  # hand-written templates; anything missing is generated and appended here.
+  templates: ../assets/musart_templates.csv
+
+  # gemini | anthropic | none | auto (whichever key is in the environment).
+  # Generated templates are written back to the CSV with source=llm. Read them
+  # before trusting the numbers -- wording affects every model's score.
+  template_llm: auto
+  # template_model: gemini-3.1-flash-lite
+
+  n_icl: 5
+  seed: 0
+
+# --- stage 4: article-grounded gold answers (opt-in, costs money) ---------
+
+augment:
+  model_id: gemini-3.1-flash-lite
+  # Above the longest article on purpose: one API call per article instead of
+  # ~16, and character-span grounding survives.
+  max_char_buffer: 200000
+  # Keep only extractions that align to a span in the source text.
+  tier1_only: true
+  submention_pass: true
+  max_workers: 8

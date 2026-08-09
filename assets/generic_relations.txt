@@ -1,0 +1,27 @@
+# Relations excluded before saliency: Wikimedia housekeeping properties,
+# taxonomy links, and demographic attributes that carry no article-specific
+# content. One relation label per line; blank lines and # comments ignored.
+instance of
+topic's main category
+subclass of
+KML file
+sex or gender
+on focus list of Wikimedia project
+topic's main template
+aspect ratio (W:H)
+religion or worldview
+facet of
+maintained by WikiProject
+category of associated people
+category for people born here
+category for people who died here
+category for maps or plans
+permanent duplicated item
+topic's main Wikimedia portal
+has part(s) of the class
+category for the interior of the item
+ethnic group
+member category
+category for the view from the item
+FactGrid item ID
+category for the view of the item

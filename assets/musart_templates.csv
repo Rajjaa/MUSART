@@ -1,0 +1,122 @@
+relation,template,source
+heritage designation,What is [S]'s heritage designation?,manual
+architectural style,What is the architectural style of [S]?,manual
+made from material,What material is [S] made from?,manual
+located on street,On which street is [S] located?,manual
+architect,Who is the architect of [S]?,manual
+historic county,In which historic county is [S] located?,manual
+occupant,Who occupies [S]?,manual
+IUCN conservation status,What is the IUCN conservation status of [S]?,manual
+has cause,What caused [S]?,manual
+studied in,Where did [S] study?,manual
+health specialty,What is the health specialty of [S]?,manual
+diel cycle,What is the diel cycle of [S]?,manual
+subject has role,What is the role of [S]?,manual
+original combination,What is the original combination of [S]?,manual
+has basionym,What is the basionym of [S]?,manual
+hymenium type,What is the hymenium type of [S]?,manual
+mushroom cap shape,What is cap shape of the mushroom [S]?,manual
+hymenium attachment,What is the hymenium attachment of [S]?,manual
+stipe character,What is the stipe character of [S]?,manual
+spore print color,What is the color of the spore print of [S]?,manual
+mushroom ecological type,What is the ecological type of the mushroom [S]?,manual
+edibility,What is the edibility of [S]?,manual
+time period,What is the time period of [S]?,manual
+season of club or team,What is the season of club or team of [S]?,manual
+sport,Which sports did [S] play?,manual
+organizer,Who organizes [S]?,manual
+referee,Who is the referee of [S]?,manual
+participating team,What teams participated in [S]?,manual
+sports season of league or competition,What is the sports season of league or competition of [S]?,manual
+home venue,What is the home venue of [S]?,manual
+located in or next to body of water,Which body of water is [S] located in or next to?,manual
+continent,What is the continent of [S]?,manual
+mountain range,What is the mountain range of [S]?,manual
+applies to jurisdiction,Which jurisdiction does [S] apply to?,manual
+powered by,What powers [S]?,manual
+winner,Who is the winner of [S]?,manual
+pole position,What is the pole position of [S]?,manual
+fastest lap,What is the fastest lap by [S]?,manual
+twinned administrative body,What is the twinned administrative body of [S]?,manual
+located in time zone,What time zone is [S] located in?,manual
+shares border with,What does [S] share a border with?,manual
+capital of,Which region does [S] serve as the capital of?,manual
+place of birth,Where was [S] born?,manual
+place of death,Where did [S] die?,manual
+father,Who is the father of [S]?,manual
+spouse,Who is the spouse of [S]?,manual
+country of citizenship,What is the country of citizenship of [S]?,manual
+position held,What is the position held by [S]?,manual
+noble title,What is the noble title of [S]?,manual
+mother,Who is the mother of [S]?,manual
+family,What is the family of [S]?,manual
+given name,What is the given name of [S]?,manual
+sibling,Who are the siblings of [S]?,manual
+place of burial,Where is [S] buried?,manual
+child,Who are the children of [S]?,manual
+producer,Who are the producers of [S]?,manual
+performer,Who are the performers of [S]?,manual
+lyricist,Who are the lyricist of [S]?,manual
+record label,What is the record label of [S]?,manual
+form of creative work,What is the form of creative work of [S]?,manual
+located in the administrative territorial entity,In which administrative territorial entity is [S] located?,manual
+transport network,What transport network is the infrastructure [S] part of?,manual
+country,What is the country of [S]?,manual
+terminus,What is the terminus of [S]?,manual
+terminus location,What is the location of the terminus of [S]?,manual
+connects with,Which item is connected with [S]?,manual
+maintained by,Who maintains [S]?,manual
+owned by,Who owns [S]?,manual
+state of use,What is the state of use of [S]?,manual
+connecting line,What line does [S] connect to?,manual
+connecting service,What is the connecting service of [S]?,manual
+adjacent station,What is the station adjacent to [S]?,manual
+publisher,Who is the publisher of [S]?,manual
+genre,What is the genre of [S]?,manual
+takes place in fictional universe,Which fictional place or universe does [S] take place in?,manual
+developer,Who developed [S]?,manual
+part of the series,Which series is [S] part of?,manual
+platform,What is the platform of [S]?,manual
+game mode,What is the game mode of [S]?,manual
+distribution format,What is the distribution format of [S]?,manual
+country of origin,What is the country of origin of [S]?,manual
+characters,What are the characters of [S]?,manual
+distributed by,Who distributes [S]?,manual
+narrative location,What is the narrative location of [S]?,manual
+set in environment,Which environment is [S] set in?,manual
+ESRB rating,What is the ESRB rating of [S]?,manual
+CERO rating,What is the CERO rating of [S]?,manual
+PEGI rating,What is the PEGI rating of [S]?,manual
+designed by,Who designed [S]?,manual
+composer,Who composed [S]?,manual
+nominated for,What is [S] nominated for?,manual
+software engine,What is the software engine of [S]?,manual
+input device,What is the input device of [S]?,manual
+USK rating,What is the USK rating of [S]?,manual
+copyright license,What is the copyright license of [S]?,manual
+operating system,What is the operating system of [S]?,manual
+soundtrack release,What is the soundtrack release of [S]?,manual
+operator,Who is the operator of [S]?,manual
+manufacturer,Who is the manufacturer of [S]?,manual
+vessel class,What is the vessel class of [S]?,manual
+country of registry,What is the country of registry of [S]?,manual
+location of creation,Where was [S] created?,manual
+named after,Who or what is [S] named after?,manual
+conflict,What conflict did [S] participate in?,manual
+different from,Which item is [S] different from?,manual
+significant event,What significant event is associated with [S]?,manual
+armament,What is the armament of [S]?,manual
+shipping port,Which shipping port does [S] use?,manual
+commissioned by,Who commissioned [S]?,manual
+cast member,Who are the cast members of [S]?,manual
+color,What is the color of [S]?,manual
+copyright status,What is the copyright status of [S]?,manual
+described by source,Which source describes [S]?,manual
+epoch,What is the epoch of [S]?,manual
+has part(s),What are the parts of [S]?,manual
+language of work or name,What is the language of work or name of [S]?,manual
+participant,Who are the participants in [S]?,manual
+screenwriter,Who is the screenwriter of [S]?,manual
+season,What is the season of [S]?,manual
+theme music,What is the theme music of [S]?,manual
+voice actor,Who is the voice actor for [S]?,manual

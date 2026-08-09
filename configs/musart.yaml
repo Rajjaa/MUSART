@@ -1,0 +1,77 @@
+# MUSART, as shipped.
+#
+# This preset reproduces the dataset the paper evaluates on: 21,775 items,
+# 11 domains, 37 relations, 8,407 subjects. It is the worked example for the
+# pipeline -- see configs/template.yaml to start a corpus of your own.
+#
+# The values below are fixed to those used for the published evaluation.
+# Changing any of them produces a different dataset.
+
+corpus: ../assets/good_articles.json
+work_dir: ../output/musart
+
+# The published run predates this pipeline's Wikidata fetcher and was built from
+# a May 2025 dump snapshot. Reproducing it bit-for-bit needs those same four
+# files; put them in ../inputs/ or edit the paths below.
+#
+#   triples     TSV, no header: subject, relation, object, subject_label,
+#               object_label -- one row per object-valued truthy statement over
+#               the corpus subjects
+#   title2qid   CSV with qid,title columns: the enwiki <-> Wikidata index
+#   aliases     JSONL with qid,alias columns
+#   pid2label   JSON: property id -> English label
+#
+# Delete all four to have `musart collect` fetch everything from the Wikimedia
+# APIs instead. That builds a valid benchmark but will NOT reproduce the
+# published one, because it picks up whatever Wikidata says today.
+triples: ../inputs/ga_triples_with_labels.csv
+title2qid: ../inputs/enwiki_qid_title.csv
+aliases: ../inputs/wikidata_aliases.jsonl
+pid2label: ../inputs/pid2label.json
+
+saliency:
+  min_category_items: 100
+  min_relation_items: 50
+  top_k: 30
+  n_iter: 50
+  damping_factor: 0.999
+  threshold: 0.1
+
+select:
+  # The domains the benchmark covers. Editing this list changes the dataset,
+  # so it is fixed here to the set the published evaluation used.
+  categories:
+    - Transport
+    - Films
+    - Television
+    - Video game titles
+    - Biology and medicine
+    - Literature
+    - Architecture
+    - Battles, exercises, and conflicts
+    - Football
+    - Geography
+    - Places
+    - Motorsport
+    - Physics and astronomy
+  min_relation_items_post: 105
+  min_multi_valued: 100
+  # Dropped for having too few distinct objects to be a knowledge probe.
+  # See output/musart/cat_relation_range.csv for object counts per pair.
+  exclude_pairs:
+    - [Television, color]
+    - [Video game titles, copyright status]
+    - [Television, distribution format]
+
+build:
+  templates: ../assets/musart_templates.csv
+  # Every relation used here is already in the CSV, so no LLM call is made.
+  template_llm: none
+  n_icl: 5
+  seed: 0
+
+augment:
+  model_id: gemini-3.1-flash-lite
+  max_char_buffer: 200000
+  tier1_only: true
+  submention_pass: true

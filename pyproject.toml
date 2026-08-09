@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "musart"
+version = "1.0.0"
+description = "Build a multi-domain LM-as-KB benchmark from a set of Wikipedia articles"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+
+dependencies = [
+    "pandas>=1.5",
+    "numpy>=1.23",
+    "scikit-network>=0.31",
+    "requests>=2.28",
+    "PyYAML>=6.0",
+    "tqdm>=4.64",
+]
+
+[project.optional-dependencies]
+# Stage 4 only. Everything else runs offline.
+augment = [
+    "langextract>=1.6",
+    "beautifulsoup4>=4.11",
+]
+# Only needed when stage 3 has to invent question templates for relations that
+# are not already in the template CSV.
+templates = [
+    "google-genai>=1.0",
+]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+musart = "musart.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

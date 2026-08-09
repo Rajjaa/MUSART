@@ -1,0 +1,9 @@
+# Build artefacts and pipeline outputs are regenerable; only code, configs and
+# assets belong in the artefact.
+output/
+inputs/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
